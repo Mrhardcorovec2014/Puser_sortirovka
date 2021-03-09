@@ -84,10 +84,6 @@ namespace Sortirovka
             for (int i = 0; i < quantity; i++)
             {
                 massive[i] = Convert.ToInt32(Console.ReadLine());
-                while (!int.TryParse(Console.ReadLine(), out massive[i]))
-                {
-                    Console.WriteLine("Ошибка ввода! Введите цифровое значение");
-                }
             }
             Sorting(massive);
         }
