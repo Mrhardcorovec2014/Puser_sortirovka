@@ -6,19 +6,30 @@ namespace Sortirovka
     {
         static int[] Sorting(int[] mas)
         {
+            bool isSorted = true;
             int replacement;
-            for (int j = 0; j < mas.Length; j++)
+            for (int l = 0; l < mas.Length; l++)
             {
-                for (int l = j + 1; l < mas.Length; l++)
+                if (l != mas.Length - 1 && mas[l] > mas[l + 1])
                 {
-                    if (mas[j] > mas[l])
-                    {
-                        replacement = mas[j];
-                        mas[j] = mas[l];
-                        mas[l] = replacement;
-                    }
+                    isSorted = false;
+                    replacement = mas[l];
+                    mas[l] = mas[l + 1];
+                    mas[l + 1] = replacement;
                 }
             }
+            /*Console.WriteLine(" ");
+            Console.Write("Отсортированный массив");
+            Console.WriteLine(" ");
+            for (int o = 0; o < mas.Length; o++)
+            {
+                Console.Write(mas[o] + " ");
+            }*/
+            return isSorted ? mas:Sorting(mas);
+        }
+
+        static void Exit(int[] mas)
+        {
             Console.WriteLine(" ");
             Console.Write("Отсортированный массив");
             Console.WriteLine(" ");
@@ -26,10 +37,7 @@ namespace Sortirovka
             {
                 Console.Write(mas[o] + " ");
             }
-            return mas;
         }
-
-
         static void Main(string[] args)
         {
             Console.WriteLine("Привествую! Выберите метод ввода элементов сортировки:" + "\r\n" + "1. Вводить самому элементы массива" + "\r\n" + "2.Включить рандомайзер для элементов" + "\r\n" +
@@ -45,12 +53,11 @@ namespace Sortirovka
             }
             else if (input_setting == 2)
             {
-                int[] massive = Choise2();
-                Sorting(massive);
+                Choise2();
             }
         }
 
-        private static int[] Choise2()
+        private static void Choise2()
         {
             Console.WriteLine("Введите кол-во элементов массива:");
             int quantity;
@@ -67,8 +74,8 @@ namespace Sortirovka
                 massive[i] = alement;
                 Console.Write(massive[i] + " ");
             }
-
-            return massive;
+            Sorting(massive);
+            Exit(massive);
         }
 
         private static void Choise1()
@@ -86,6 +93,7 @@ namespace Sortirovka
                 massive[i] = Convert.ToInt32(Console.ReadLine());
             }
             Sorting(massive);
+            Exit(massive);
         }
     }
 }
