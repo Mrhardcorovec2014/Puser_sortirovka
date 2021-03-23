@@ -44,32 +44,29 @@ namespace Sortirovka
                                 "Примечание: в случае выбора рандомайзера, элементы массива будут валироваться от 0 до 100");
             int input_setting;
             while (!int.TryParse(Console.ReadLine(), out input_setting))
-            {
                 Console.WriteLine("Ошибка ввода! Введите 1 или 2");
-            }
-            if (input_setting == 1)
+            (input_setting == 1 ? (Action)Choise1 : Choise2)();
+            /*if (input_setting == 1)
             {
                 Choise1();
             }
             else if (input_setting == 2)
             {
                 Choise2();
-            }
+            }*/
         }
 
         private static void Choise2()
         {
             Console.WriteLine("Введите кол-во элементов массива:");
             int quantity;
+            Random rnd = new Random();
             while (!int.TryParse(Console.ReadLine(), out quantity))
-            {
                 Console.WriteLine("Ошибка ввода! Введите цифровое значение");
-            }
             int[] massive = new int[quantity];
             Console.WriteLine("Ваш массив");
             for (int i = 0; i < quantity; i++)
             {
-                Random rnd = new Random();
                 int alement = rnd.Next(0, 100);
                 massive[i] = alement;
                 Console.Write(massive[i] + " ");
@@ -83,15 +80,11 @@ namespace Sortirovka
             Console.WriteLine("Введите кол-во элементов массива, которые вы будете вводить:");
             int quantity;
             while (!int.TryParse(Console.ReadLine(), out quantity))
-            {
                 Console.WriteLine("Ошибка ввода! Введите цифровое значение");
-            }
             int[] massive = new int[quantity];
             Console.WriteLine("Вводите элементы для массива:");
             for (int i = 0; i < quantity; i++)
-            {
                 massive[i] = Convert.ToInt32(Console.ReadLine());
-            }
             Sorting(massive);
             Exit(massive);
         }
